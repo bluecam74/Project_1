@@ -1,0 +1,31 @@
+ body {
+            background-image: url("../Images/road2.jpg");
+            background-size: 100%;
+        }
+        
+        .main {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            font-size: 65px;
+            margin: 30px;
+        }
+        .waves-effect {
+            background-color: black;
+            font-family: 'Roboto', sans-serif;
+            border-radius: 5px;
+        }
+        .waves-effect:hover {
+            background-color: chocolate;
+            color:black;
+            font-family: 'Roboto', sans-serif;
+            
+        }
+
+.input-field input:focus + label {
+   color:chocolate !important;
+ }
+  .row .input-field input:focus {
+   border-bottom: 1px solid chocolate!important;
+   box-shadow: 0 1px 0 0 chocolate !important
+ }
+        
