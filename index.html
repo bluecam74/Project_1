@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="Assets/CSS/styles.css" rel="stylesheet" type="text/css">
+
+
     <title>Song City</title>
 </head>
+
 <body>
-    <style>
-        body {
-            background-image: url(../Assets/CSS/Images/road_background.jpg);
-        }
-
-        .main {
-            font-family: 'Roboto', sans-serif;
-            text-align: center;
-            font-size: 65px;
-            margin: 20px;
-        }
-    </style>
-    
+   
+    <!-- <img class="background" src="Assets/Images/road_background.jpg" alt="road">  -->
     <h1 class="main">Song City</h1>
+    <div class="container">
+        <div class="row">
+            <div class="input-field col s3">
+                <input value="123 Main Street" id="street" type="text" class="validate">
+                <label class="active" for="street">Address</label>
+            </div>
+            <div class="input-field col s3">
+                <input value="Irvine" id="city" type="text" class="validate">
+                <label class="active" for="city">City</label>
+            </div>
+            <div class="input-field col s3">
+                <input value="CA" id="state" type="text" class="validate">
+                <label class="active" for="state">State</label>
+            </div>
+            <div class="input-field col s3">
+                <input value="92618" id="zip" type="text" class="validate">
+                <label class="active" for="zip">Zip Code</label>
+            </div>
+        </div>
+        <div class="row center-align">
+            <div class="col s12">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">audiotrack</i>Search</a>
+            </div>
+        </div>
+    </div>
 
-    
+
+
 </body>
+
 </html>
