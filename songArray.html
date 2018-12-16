@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing Api's</title>
+
+</head>
+
+<body>
+    <h2 id="displayDiv"></h2>
+    <h2 class="artist"></h2>
+    <div id="map">See console for array</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+
+    <script>
+
+var songArray = [];
+
+        function hipHopArray() {
+            var queryURL = "https://itunes.apple.com/search?term=hip+hop&limit=200";
+
+            $.ajax({
+                url: queryURL,
+                dataType: "jsonp",
+                success: function (response) {
+
+                    for (var i = 0; i < 200; i++) {
+                        (songArray).push(response.results[i].trackName);
+                    }
+                }
+            });
+
+
+        };
+
+        function alternativeArray() {
+            var queryURL = "https://itunes.apple.com/search?term=alternative&limit=200";
+
+            $.ajax({
+                url: queryURL,
+                dataType: "jsonp",
+                success: function (response) {
+
+
+                    for (var i = 0; i < 200; i++) {
+                        (songArray).push(response.results[i].trackName);
+                    }
+                }
+            });
+        };
+
+        function popArray() {
+            var queryURL = "https://itunes.apple.com/search?term=pop&limit=200";
+
+            $.ajax({
+                url: queryURL,
+                dataType: "jsonp",
+                success: function (response) {
+                    
+                    for (var i = 0; i < 200; i++) {
+                        (songArray).push(response.results[i].trackName);
+                    }
+                }
+            });
+        };
+
+        function countryArray() {
+            var queryURL = "https://itunes.apple.com/search?term=country&limit=200";
+
+            $.ajax({
+                url: queryURL,
+                dataType: "jsonp",
+                success: function (response) {
+
+                    for (var i = 0; i < 200; i++) {
+                        (songArray).push(response.results[i].trackName);
+                    }
+                }
+            });
+        };
+
+        function danceArray() {
+            var queryURL = "https://itunes.apple.com/search?term=dance&limit=200";
+
+            $.ajax({
+                url: queryURL,
+                dataType: "jsonp",
+                success: function (response) {
+                    for (var i = 0; i < 200; i++) {
+                        (songArray).push(response.results[i].trackName);
+                    }
+                }
+            });
+        };
+
+        function newAgeArray() {
+            var queryURL = "https://itunes.apple.com/search?term=new+age&limit=200";
+
+            $.ajax({
+                url: queryURL,
+                dataType: "jsonp",
+                success: function (response) {
+                    for (var i = 0; i < 200; i++) {
+                        (songArray).push(response.results[i].trackName);
+                    }
+                }
+            });
+        };
+
+
+        hipHopArray();
+        alternativeArray();
+        popArray();
+        countryArray();
+        danceArray();
+        newAgeArray();
+
+        console.log(songArray);
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
