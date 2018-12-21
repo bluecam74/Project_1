@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapping Api</title>
+</head>
+
+<body>
+    <h2 id="displayDiv"></h2>
+    <div id="map"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script>
+
+    var convVal = '';
+        function mappingApi() {
+            var apiKey = "jqnjIbmIDCL7UaGiP6SPvbfGTlGTs9z0";
+            var street = "16800alton";
+            var city = "irvine";
+            var state = "CA";
+            var queryURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + apiKey + "&adminArea3=" + state + "&adminArea1=US&adminArea5=" + city + "&street=" + street;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                $("#displayDiv").text("Latitude: " + response.results[0].locations[0].latLng.lat + " Longitude: " + response.results[0].locations[0].latLng.lng);
+                //console.log(response);
+                var postalCode = response.results[0].locations[0].postalCode;
+                var longitude = response.results[0].locations[0].latLng.lng;
+                var latitude = response.results[0].locations[0].latLng.lat;
+                $("#displayDiv").append(" Zip Code: " + postalCode)
+
+                getIndex();
+
+                L.mapquest.key = "jqnjIbmIDCL7UaGiP6SPvbfGTlGTs9z0";
+
+                // 'map' refers to a <div> element with the ID map
+                var map = L.mapquest.map('map', {
+                    center: [latitude, longitude],
+                    layers: L.mapquest.tileLayer('map'),
+                    zoom: 15
+                });
+
+                L.marker([latitude, longitude], {
+                    icon: L.mapquest.icons.marker(),
+                    draggable: false
+                }).addTo(map);
+
+                function getIndex() {
+
+                var addressID = (Math.abs(longitude % latitude)) * 10000000;
+                console.log("address ID: ", addressID);
+
+                var test = addressID;
+                var addressIDArray = test.toString().split('');
+                var stripVal = [
+                addressIDArray[0],
+                addressIDArray[1], 
+                addressIDArray[2], 
+                addressIDArray[3],
+                addressIDArray[4],
+                addressIDArray[5], 
+                addressIDArray[6], 
+                addressIDArray[7], 
+                addressIDArray[8], 
+                ];
+                convVal = stripVal.join('');
+                var indexVal = parseInt(convVal);
+                console.log(convVal);
+                //console.log(typeof(indexVal));
+                
+                };
+
+                
+                var SapiKey = "589a72c95c424e09b134b2b826c0f38f";
+                var queryURL = "https://api.spotify.com/v1/search?clientid="+SapiKey+"q=blondie";
+                
+
+                $.ajax({
+                    url: queryURL,
+                    dataType: "jsonp",
+                    success: function (response) {
+                        console.log(response.results);
+
+                    }
+
+                });
+
+
+            });
+        }
+
+        mappingApi();
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

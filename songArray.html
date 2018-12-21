@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Testing Api's</title>
+    <title>Song Array Construction</title>
 
 </head>
 
@@ -16,10 +16,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
 
     <script>
+        var config = {
+            apiKey: "AIzaSyCSgNJHvbAHX2hITADtnnUWBLraMFI7_lA",
+            authDomain: "propsong-c1980.firebaseapp.com",
+            databaseURL: "https://propsong-c1980.firebaseio.com",
+            projectId: "propsong-c1980",
+            storageBucket: "propsong-c1980.appspot.com",
+            messagingSenderId: "657030694604"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        var arrayRef = firebase.database().ref("songs/");
 
-var songArray = [];
+
+        var songArray = [];
 
         function hipHopArray() {
             var queryURL = "https://itunes.apple.com/search?term=hip+hop&limit=200";
@@ -30,8 +43,20 @@ var songArray = [];
                 success: function (response) {
 
                     for (var i = 0; i < 200; i++) {
-                        (songArray).push(response.results[i].trackName);
+
+                        if (response.results[i].trackName) {
+                            songArray.push(
+                                {
+                                    name: response.results[i].trackName,
+                                    artist: response.results[i].artistName,
+                                }
+                            )
+
+                        };
+
                     }
+                    console.log("hiphop");
+                    arrayRef.set(songArray);
                 }
             });
 
@@ -48,10 +73,20 @@ var songArray = [];
 
 
                     for (var i = 0; i < 200; i++) {
-                        (songArray).push(response.results[i].trackName);
+                        if (response.results[i].trackName) {
+                            songArray.push(
+                                {
+                                    name: response.results[i].trackName,
+                                    artist: response.results[i].artistName,
+                                }
+                            )
+                        };
                     }
+                    arrayRef.set(songArray);
+                    console.log("alternative")
                 }
             });
+            
         };
 
         function popArray() {
@@ -61,10 +96,19 @@ var songArray = [];
                 url: queryURL,
                 dataType: "jsonp",
                 success: function (response) {
-                    
+
                     for (var i = 0; i < 200; i++) {
-                        (songArray).push(response.results[i].trackName);
+                        if (response.results[i].trackName) {
+                            songArray.push(
+                                {
+                                    name: response.results[i].trackName,
+                                    artist: response.results[i].artistName,
+                                }
+                            )
+                        };
                     }
+                arrayRef.set(songArray);
+                console.log("pop")
                 }
             });
         };
@@ -78,9 +122,19 @@ var songArray = [];
                 success: function (response) {
 
                     for (var i = 0; i < 200; i++) {
-                        (songArray).push(response.results[i].trackName);
+                        if (response.results[i].trackName) {
+                            songArray.push(
+                                {
+                                    name: response.results[i].trackName,
+                                    artist: response.results[i].artistName,
+                                }
+                            )
+                        };
                     }
+                    arrayRef.set(songArray);  
+                    console.log("country")
                 }
+                
             });
         };
 
@@ -92,8 +146,16 @@ var songArray = [];
                 dataType: "jsonp",
                 success: function (response) {
                     for (var i = 0; i < 200; i++) {
-                        (songArray).push(response.results[i].trackName);
+                        if (response.results[i].trackName) {
+                            songArray.push(
+                                {
+                                    name: response.results[i].trackName,
+                                    artist: response.results[i].artistName,
+                                }
+                            )
+                        };
                     }
+                    arrayRef.set(songArray);
                 }
             });
         };
@@ -106,12 +168,20 @@ var songArray = [];
                 dataType: "jsonp",
                 success: function (response) {
                     for (var i = 0; i < 200; i++) {
-                        (songArray).push(response.results[i].trackName);
+                        if (response.results[i].trackName) {
+                            songArray.push(
+                                {
+                                    name: response.results[i].trackName,
+                                    artist: response.results[i].artistName,
+                                }
+                            )
+                        };
                     }
+                    arrayRef.set(songArray);
                 }
+
             });
         };
-
 
         hipHopArray();
         alternativeArray();
@@ -120,7 +190,7 @@ var songArray = [];
         danceArray();
         newAgeArray();
 
-        console.log(songArray);
+
 
 
 
