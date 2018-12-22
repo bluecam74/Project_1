@@ -8,8 +8,7 @@ var selectedTrackId = '';
 var assigntrack='';
 var image='';
 
-$("#displayDiv").html("Latitude: 33.643428"+"  ;  "+ "Longitude: -117.835649");
-$("#displayDiv").append("<div>"+("510 E. PELTASON DRIVE,  IRVINE, CA 92697")+"</div>");
+
 
 function songlistgetter(songlist) {
 
@@ -20,13 +19,13 @@ function songlistgetter(songlist) {
 
         var song = result.parse.links[Math.floor((Math.random() * 100) + 1)]["*"];
 
-        var queryURL = "https://itunes.apple.com/search?term=" + song + "&limit=200";
+        var queryURL = "https://itunes.apple.com/search?term=" + song + "&limit=1";
         $.ajax({
             url: queryURL,
             dataType: "jsonp",
             success: function (response) {
                 //console.log(response)
-                var queryURL = "https://itunes.apple.com/lookup?id=" + response.results[0].trackId + " &limit=200";
+                var queryURL = "https://itunes.apple.com/lookup?id=" + response.results[0].trackId;
                 $.ajax({
                     url: queryURL,
                     dataType: "jsonp",
@@ -179,12 +178,12 @@ function mappingApi() {
         method: "GET"
     }).then(function (response) {
 
-        $("#displayDiv").html("Latitude: " + response.results[0].locations[0].latLng.lat + " Longitude: " + response.results[0].locations[0].latLng.lng);
+        $(".placeholder").html("Latitude: " + response.results[0].locations[0].latLng.lat + " Longitude: " + response.results[0].locations[0].latLng.lng);
         var upperStreet = street.toUpperCase();
         var upperCity = city.toUpperCase();
         var upperState = state.toUpperCase();
         var postalCode = response.results[0].locations[0].postalCode;
-        $("#displayDiv").append("<div>" + (upperStreet + ", " + upperCity + ", " + upperState  + " " + postalCode) + "</div>");
+        $(".placeholder").append("<div>" + (upperStreet + ", " + upperCity + ", " + upperState  + " " + postalCode) + "</div>");
     });
     console.log("mappingApi", selectedArtist+selectedTrackname);
 }
